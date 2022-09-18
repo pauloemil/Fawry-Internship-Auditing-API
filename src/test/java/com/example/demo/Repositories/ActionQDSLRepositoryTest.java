@@ -39,12 +39,7 @@ class ActionQDSLRepositoryTest {
 	@Qualifier("actionRepositoryQueryDSL")
 	@Autowired
 	ActionQueryDSLRepository actionQueryDSLRepository;
-	
-
-	TemplateDescriptionConverter templateDescriptionConverter = new TemplateDescriptionConverter();
-
 	private static final String NAME_EN = "paulo";
-//	private static final long ParameterTypeId = 30l;
 
 	@TestConfiguration
 	static class ActionQDSLRepositoryTestConfig {
@@ -148,74 +143,107 @@ class ActionQDSLRepositoryTest {
 		searchDto.setPage_number(1);
 	}
 
-
+	// Search with no parameters
 	@Test
 	void searchInActionsWithoutParameters_shouldFindIt() {
 		ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
 
 		assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
 	}
-		@Test
-		void searchInActionsWithValidUserName_shouldFindIt() {
-			searchDto.setUser_name(action.getUser().getUser_name());
 
-			ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
+	// Search with one parameter
+	@Test
+	void searchInActionsWithValidUserName_shouldFindIt() {
+		searchDto.setUser_name(user.getUser_name());
 
-			assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
-		}
+		ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
 
-		@Test
-		void searchInActionsWithValidApplicationName_shouldFindIt() {
-			searchDto.setApplication_name(action.getApplication().getApplication_name());
+		assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
+	}
+	@Test
+	void searchInActionsWithValidApplicationName_shouldFindIt() {
+		searchDto.setApplication_name(application.getApplication_name());
 
-			ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
+		ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
 
-			assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
-		}
+		assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
+	}
+	@Test
+	void searchInActionsWithValidBusinessEntityName_shouldFindIt() {
+		searchDto.setBusiness_entity_name(businessEntity.getBusiness_entity_name());
 
-		@Test
-		void searchInActionsWithValidBusinessEntityName_shouldFindIt() {
-			searchDto.setBusiness_entity_name(action.getBusiness_entity().getBusiness_entity_name());
+		ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
 
-			ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
+		assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
+	}
+	@Test
+	void searchInActionsWithValidActionTypeId_shouldFindIt() {
+		searchDto.setAction_type_id(actionType.getAction_type_id());
 
-			assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
-		}
+		ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
 
-		@Test
-		void searchInActionsWithValidActionTypeId_shouldFindIt() {
-			searchDto.setAction_type_id(action.getAction_type().getAction_type_id());
+		assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
+	}
+	@Test
+	void searchInActionsWithValidParameterTypeIdAndParameterValue_shouldFindIt() {
+		searchDto.setParameter_type_id(orderType.getParameter_type_id());
+		searchDto.setParameter_value(orderParameter.getParameter_value());
 
-			ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
+		ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
 
-			assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
-		}
-
-		@Test
-		void searchInActionsWithValidParameterTypeIdAndParameterValue_shouldFindIt() {
-		System.out.println(action.getParameters());
-			searchDto.setParameter_type_id(action.getParameters().get(0).getParameter_type().getParameter_type_id());
-			searchDto.setParameter_value(action.getParameters().get(0).getParameter_value());
-
-			ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
-
-			assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
+		assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
 
 	}
 
-//	@Nested
-//	class SearchWithTwoParameters {
-//		@Test
-//		void searchInActionsWithValidUserNameAndApplicationName_shouldFindIt() {
-//			searchDto.setUser_name(action.getUser().getUser_name());
-//			searchDto.setApplication_name(action.getApplication().getApplication_name());
-//
-//
-//			ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
-//
-//			assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
-//		}
-//	}
+	// Search with two parameters
+	@Test
+	void searchInActionsWithValidUserNameAndApplicationName_shouldFindIt() {
+		searchDto.setUser_name(user.getUser_name());
+		searchDto.setApplication_name(application.getApplication_name());
 
 
+		ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
+
+		assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
+	}
+
+	// Search with three parameters
+	@Test
+	void searchInActionsWithValidUserNameAndApplicationNameAndBusinessEntityName_shouldFindIt() {
+		searchDto.setUser_name(user.getUser_name());
+		searchDto.setApplication_name(application.getApplication_name());
+		searchDto.setBusiness_entity_name(businessEntity.getBusiness_entity_name());
+
+		ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
+
+		assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
+	}
+
+	// Search with four parameters
+	@Test
+	void searchInActionsWithValidUserNameAndApplicationNameAndBusinessEntityNameAndActionTypeId_shouldFindIt() {
+		searchDto.setUser_name(user.getUser_name());
+		searchDto.setApplication_name(application.getApplication_name());
+		searchDto.setBusiness_entity_name(businessEntity.getBusiness_entity_name());
+		searchDto.setAction_type_id(actionType.getAction_type_id());
+
+		ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
+
+		assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
+	}
+
+	// Search with all parameters
+	@Test
+	void searchInActionsWithAllParameters_shouldFindIt() {
+		searchDto.setUser_name(user.getUser_name());
+		searchDto.setApplication_name(application.getApplication_name());
+		searchDto.setBusiness_entity_name(businessEntity.getBusiness_entity_name());
+		searchDto.setAction_type_id(actionType.getAction_type_id());
+		searchDto.setParameter_type_id(orderType.getParameter_type_id());
+		searchDto.setParameter_value(orderParameter.getParameter_value());
+
+		ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
+
+		assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
+	}
 }
