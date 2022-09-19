@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "d57b2b0a-b896-4dd1-abae-4030729e66ba",
+		"name": "Actions",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Action",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"application_id\": 1,\r\n    \"user_id\": 1,\r\n    \"business_entity_id\": 1,\r\n    \"action_type_name\": \"ORDER_CREATED\",\r\n    \"parameters\": [\r\n        {\r\n            \"parameter_type_name\": \"customer\",\r\n            \"parameter_id\": \"12\",\r\n            \"parameter_value\": \"paulo12311\"\r\n        },\r\n        {\r\n            \"parameter_type_name\": \"order\",\r\n            \"parameter_id\": \"10\",\r\n            \"parameter_value\": \"Fast Food1\"\r\n        },\r\n        {\r\n            \"parameter_type_name\": \"product\",\r\n            \"parameter_id\": \"10\",\r\n            \"parameter_value\": \"Mandy Meet with Rice1\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/actions/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actions",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actions by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/actions/65",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actions",
+						"65"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actions with parameters with pagination",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/actions/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actions",
+						""
+					],
+					"query": [
+						{
+							"key": "application_name",
+							"value": "MAzareeta App",
+							"disabled": true
+						},
+						{
+							"key": "action_type_id",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "parameter_type_id",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "parameter_value",
+							"value": "paulo12311",
+							"disabled": true
+						},
+						{
+							"key": "business_entity_name",
+							"value": "Paulo Co.2",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": "3",
+							"disabled": true
+						},
+						{
+							"key": "page_number",
+							"value": "2",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

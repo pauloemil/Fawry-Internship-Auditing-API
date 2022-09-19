@@ -1,0 +1,29 @@
+{
+	"info": {
+		"_postman_id": "09f60a8a-9508-49a9-8b0b-24a344af0863",
+		"name": "Selectors",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Selectors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/selectors/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"selectors",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
