@@ -20,6 +20,8 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -77,6 +79,7 @@ class ActionTypeServiceTest {
 		ActionType found = actionTypeService.findActionTypeByName(NAME_EN);
 
 		assertThat(found.getName()).isEqualTo(NAME_EN);
+		verify(actionTypeRepository).findByName(any());
 	}
 
 	@Test
@@ -95,6 +98,7 @@ class ActionTypeServiceTest {
 
 		assertThatThrownBy(()->actionTypeRepository.findByName(NAME_EN_WRONG))
 				.isInstanceOf(NotFoundException.class).hasMessageContaining(NAME_EN_WRONG);
+		verify(actionTypeRepository).findByName(any());
 	}
 
 	@Test
@@ -109,5 +113,7 @@ class ActionTypeServiceTest {
 		List<ActionType> found = actionTypeService.findAllActionTypes();
 
 		assertThat(found).containsExactly(actionType, actionType2, actionType3);
+
+		verify(actionTypeRepository).findAll();
 	}
 }

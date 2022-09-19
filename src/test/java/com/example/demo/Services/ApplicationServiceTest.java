@@ -20,8 +20,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
 class ApplicationServiceTest {
@@ -67,6 +66,8 @@ class ApplicationServiceTest {
 		Application found = applicationService.findApplicationById(SOME_ID);
 
 		assertThat(found.getApplication_id()).isEqualTo(SOME_ID);
+
+		verify(applicationRepository).findById(any());
 	}
 
 	@Test
@@ -85,5 +86,6 @@ class ApplicationServiceTest {
 
 		assertThatThrownBy(()->applicationRepository.findById(SOME_WRONG_ID))
 				.isInstanceOf(NotFoundException.class).hasMessageContaining(SOME_WRONG_ID+"");
+		verify(applicationRepository).findById(any());
 	}
 }

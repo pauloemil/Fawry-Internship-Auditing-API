@@ -159,6 +159,7 @@ class ActionQDSLRepositoryTest {
 		ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
 
 		assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
+		assertThat(actionsResponseDto.getActions()).extracting("user").contains(user);
 	}
 	@Test
 	void searchInActionsWithValidApplicationName_shouldFindIt() {
@@ -167,6 +168,7 @@ class ActionQDSLRepositoryTest {
 		ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
 
 		assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
+		assertThat(actionsResponseDto.getActions()).extracting("application").contains(application);
 	}
 	@Test
 	void searchInActionsWithValidBusinessEntityName_shouldFindIt() {
@@ -175,6 +177,7 @@ class ActionQDSLRepositoryTest {
 		ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
 
 		assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
+		assertThat(actionsResponseDto.getActions()).extracting("business_entity").contains(businessEntity);
 	}
 	@Test
 	void searchInActionsWithValidActionTypeId_shouldFindIt() {
@@ -183,8 +186,9 @@ class ActionQDSLRepositoryTest {
 		ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
 
 		assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
+		assertThat(actionsResponseDto.getActions()).extracting("action_type").contains(actionType);
 	}
-	@Test
+	@Test // TODO
 	void searchInActionsWithValidParameterTypeIdAndParameterValue_shouldFindIt() {
 		searchDto.setParameter_type_id(orderType.getParameter_type_id());
 		searchDto.setParameter_value(orderParameter.getParameter_value());
@@ -192,7 +196,7 @@ class ActionQDSLRepositoryTest {
 		ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
 
 		assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
-
+		assertThat(actionsResponseDto.getActions()).extracting("user").contains(user);
 	}
 
 	// Search with two parameters
@@ -205,6 +209,9 @@ class ActionQDSLRepositoryTest {
 		ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
 
 		assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
+		assertThat(actionsResponseDto.getActions()).extracting("user").contains(user);
+		assertThat(actionsResponseDto.getActions()).extracting("application").contains(application);
+
 	}
 
 	// Search with three parameters
@@ -217,6 +224,9 @@ class ActionQDSLRepositoryTest {
 		ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
 
 		assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
+		assertThat(actionsResponseDto.getActions()).extracting("user").contains(user);
+		assertThat(actionsResponseDto.getActions()).extracting("application").contains(application);
+		assertThat(actionsResponseDto.getActions()).extracting("business_entity").contains(businessEntity);
 	}
 
 	// Search with four parameters
@@ -229,11 +239,17 @@ class ActionQDSLRepositoryTest {
 
 		ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
 
+
 		assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
+
+		assertThat(actionsResponseDto.getActions()).extracting("user").contains(user);
+		assertThat(actionsResponseDto.getActions()).extracting("application").contains(application);
+		assertThat(actionsResponseDto.getActions()).extracting("business_entity").contains(businessEntity);
+		assertThat(actionsResponseDto.getActions()).extracting("action_type").contains(actionType);
 	}
 
 	// Search with all parameters
-	@Test
+	@Test // TODO
 	void searchInActionsWithAllParameters_shouldFindIt() {
 		searchDto.setUser_name(user.getUser_name());
 		searchDto.setApplication_name(application.getApplication_name());
@@ -245,5 +261,10 @@ class ActionQDSLRepositoryTest {
 		ActionsResponseDto actionsResponseDto = actionQueryDSLRepository.findAppsGeneric(searchDto);
 
 		assertThat(actionsResponseDto.getTotal_count()).isGreaterThan(0);
+
+		assertThat(actionsResponseDto.getActions()).extracting("user").contains(user);
+		assertThat(actionsResponseDto.getActions()).extracting("application").contains(application);
+		assertThat(actionsResponseDto.getActions()).extracting("business_entity").contains(businessEntity);
+		assertThat(actionsResponseDto.getActions()).extracting("action_type").contains(actionType);
 	}
 }

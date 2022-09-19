@@ -20,8 +20,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
 class BusinessEntityServiceTest {
@@ -67,6 +66,7 @@ class BusinessEntityServiceTest {
 		BusinessEntity found = businessEntityService.findBusinessEntityById(SOME_ID);
 
 		assertThat(found.getBusiness_entity_id()).isEqualTo(SOME_ID);
+		verify(businessEntityRepository).findById(any());
 	}
 
 	@Test
@@ -85,5 +85,7 @@ class BusinessEntityServiceTest {
 
 		assertThatThrownBy(()->{
 			businessEntityService.findBusinessEntityById(SOME_WRONG_ID);
-		}).isInstanceOf(NotFoundException.class).hasMessageContaining(SOME_WRONG_ID+"");	}
+		}).isInstanceOf(NotFoundException.class).hasMessageContaining(SOME_WRONG_ID+"");
+		verify(businessEntityRepository).findById(any());
+	}
 }

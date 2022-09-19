@@ -23,8 +23,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
 class ParameterTypeServiceTest {
@@ -82,6 +81,7 @@ class ParameterTypeServiceTest {
 		ParameterType found = parameterTypeService.findParameterTypeByName(NAME_EN);
 
 		assertThat(found.getName()).isEqualTo(NAME_EN);
+		verify(parameterTypeRepository).findByName(any());
 	}
 
 	@Test
@@ -100,6 +100,7 @@ class ParameterTypeServiceTest {
 		assertThatThrownBy(()->{
 			parameterTypeService.findParameterTypeByName(NAME_EN_WRONG);
 		}).isInstanceOf(NotFoundException.class).hasMessageContaining(NAME_EN_WRONG);
+		verify(parameterTypeRepository).findByName(any());
 	}
 
 	@Test
@@ -113,5 +114,6 @@ class ParameterTypeServiceTest {
 		List<ParameterType> found = parameterTypeService.findAllParameterTypes();
 
 		assertThat(found).containsExactly(parameterType, parameterType2, parameterType3);
+		verify(parameterTypeRepository).findAll();
 	}
 }

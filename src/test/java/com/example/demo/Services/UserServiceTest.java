@@ -22,9 +22,9 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 
 @ExtendWith(SpringExtension.class)
@@ -72,6 +72,7 @@ class UserServiceTest {
 		User found = userService.findUserById(SOME_ID);
 
 		assertThat(found.getUser_id()).isEqualTo(SOME_ID);
+		verify(userRepository).findById(any());
 	}
 	@Test
 	void findUserWithInvalidName_shouldThrowNotFoundError(){
@@ -89,5 +90,6 @@ class UserServiceTest {
 
 		assertThatThrownBy(() -> userService.findUserById(SOME_WRONG_ID))
 				.isInstanceOf(NotFoundException.class).hasMessageContaining(SOME_WRONG_ID+"");
+		verify(userRepository).findById(any());
 	}
 }

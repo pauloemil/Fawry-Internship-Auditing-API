@@ -61,6 +61,7 @@ class ActionServiceTest {
 		Action found = actionService.findActionById(SOME_ID);
 
 		assertThat(found.getAction_id()).isEqualTo(SOME_ID);
+		verify(actionRepository).findById(any());
 	}
 
 	@Test
@@ -77,6 +78,7 @@ class ActionServiceTest {
 		assertThatThrownBy(()->{
 			actionService.findActionById(SOME_WRONG_ID);
 		}).isInstanceOf(NotFoundException.class).hasMessageContaining(SOME_WRONG_ID+"");
+		verify(actionRepository).findById(any());
 	}
 
 	@Test
