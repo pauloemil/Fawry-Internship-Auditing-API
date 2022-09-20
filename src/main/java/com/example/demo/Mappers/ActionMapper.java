@@ -11,12 +11,8 @@ import com.example.demo.Services.UserService;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ActionMapper {
-
-	ActionMapper INSTANCE = Mappers.getMapper(ActionMapper.class);
-
-
 // available on the beta version f the mapstruct! condition and conditionExpression
 //		@Mapping(target = "user",
 //				 condition = "actionRequestDto.getUser_id() != 0"

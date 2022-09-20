@@ -10,13 +10,9 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ParameterMapper {
-
-	ParameterMapper INSTANCE = Mappers.getMapper(ParameterMapper.class);
-
 	@Mapping(target = "parameter_type", expression = "java(parameterTypeService.findParameterTypeByName(parameterDto.getParameter_type_name()))")
 	Parameter convertToParameter(ParameterDto parameterDto,
 								 @Context ParameterTypeService parameterTypeService);
-
 }
