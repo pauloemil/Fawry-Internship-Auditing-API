@@ -6,21 +6,18 @@ import com.example.demo.Services.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @AllArgsConstructor
-@NoArgsConstructor
+@Component
 public class ActionValidation {
-	@Autowired
-	private ActionTypeService actionTypeService;
-	@Autowired
-	private ApplicationService applicationService;
-	@Autowired
-	private BusinessEntityService businessEntityService;
-	@Autowired
-	private UserService userService;
-	@Autowired
-	private ParameterTypeService parameterTypeService;
 
+	// autowire doesn't work properly!
+	private ActionTypeService actionTypeService;
+	private ApplicationService applicationService;
+	private BusinessEntityService businessEntityService;
+	private UserService userService;
+	private ParameterTypeService parameterTypeService;
 
 	public void isActionRequestValid(ActionRequestDto actionRequestDto) {
 		try{
