@@ -14,14 +14,6 @@ public class ParameterServiceImpl implements ParameterService {
     @Autowired
     ParameterRepository parameterRepo;
 
-
-    public ParameterServiceImpl(ParameterRepository parameterRepo) {
-        this.parameterRepo = parameterRepo;
-    }
-
-    public ParameterServiceImpl() {
-    }
-
     @Override
     public Parameter saveParameter(Parameter parameter) {
         Parameter savedParameter = parameterRepo.save(parameter);

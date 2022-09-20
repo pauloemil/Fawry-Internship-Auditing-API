@@ -13,17 +13,8 @@ import java.util.Optional;
 
 @Service
 public class ParameterTypeServiceImpl implements ParameterTypeService {
-
     @Autowired
     ParameterTypeRepository parameterTypeRepository;
-
-
-    public ParameterTypeServiceImpl(ParameterTypeRepository parameterTypeRepository) {
-        this.parameterTypeRepository = parameterTypeRepository;
-    }
-
-    public ParameterTypeServiceImpl() {
-    }
 
     @Override
     public ParameterType findParameterTypeByName(String name) {

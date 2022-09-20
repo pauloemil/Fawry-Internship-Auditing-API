@@ -15,13 +15,6 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Autowired
     ApplicationRepository applicationRepository;
 
-    public ApplicationServiceImpl(ApplicationRepository applicationRepository) {
-        this.applicationRepository = applicationRepository;
-    }
-
-    public ApplicationServiceImpl() {
-    }
-
     @Override
     public Application findApplicationById(long id) {
         if(id == 0)

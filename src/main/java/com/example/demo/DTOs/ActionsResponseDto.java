@@ -15,15 +15,4 @@ public class ActionsResponseDto {
 	private long page_size;
 	private long page_number;
 	private List<Action> actions;
-
-
-	@Override
-	public String toString() {
-		return "ActionsResponseDto{" +
-				"actions=" + actions +
-				", total_count=" + total_count +
-				", page_size=" + page_size +
-				", page_number=" + page_number +
-				'}';
-	}
 }

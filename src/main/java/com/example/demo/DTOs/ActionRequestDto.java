@@ -10,7 +10,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ActionRequestDto {
-
     private long application_id;
     private long user_id;
     private long business_entity_id;

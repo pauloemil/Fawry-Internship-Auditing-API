@@ -16,6 +16,4 @@ public class SearchDto {
     private String parameter_value;
     private long limit;
     private long page_number;
-
-
 }

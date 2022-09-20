@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 public class SelectorDto {
 	private long id;
 	private String type_name;
-
 }

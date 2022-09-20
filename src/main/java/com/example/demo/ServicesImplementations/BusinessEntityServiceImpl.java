@@ -12,17 +12,8 @@ import java.util.Optional;
 
 @Service
 public class BusinessEntityServiceImpl implements BusinessEntityService {
-
     @Autowired
     BusinessEntityRepository businessEntityRepository;
-
-    public BusinessEntityServiceImpl(BusinessEntityRepository businessEntityRepository) {
-        this.businessEntityRepository = businessEntityRepository;
-    }
-
-    public BusinessEntityServiceImpl() {
-    }
-
     @Override
     public BusinessEntity findBusinessEntityById(long id) {
         if(id == 0)

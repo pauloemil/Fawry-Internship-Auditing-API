@@ -16,15 +16,6 @@ public class ActionTypeServiceImpl  implements ActionTypeService {
 
     @Autowired
     ActionTypeRepository actionTypeRepository;
-
-
-    public ActionTypeServiceImpl(ActionTypeRepository actionTypeRepository) {
-        this.actionTypeRepository = actionTypeRepository;
-    }
-
-    public ActionTypeServiceImpl() {
-    }
-
     @Override
     public ActionType findActionTypeByName(String name) {
         if(name == null)
