@@ -70,7 +70,7 @@ public class ActionServiceImpl implements ActionService  {
         parameters.add(new ParameterDto(action.getApplication().getApplication_id(), "application", action.getApplication().getApplication_name()));
         parameters.add(new ParameterDto(action.getBusiness_entity().getBusiness_entity_id(), "be", action.getBusiness_entity().getBusiness_entity_name()));
 
-        Action saved = actionRepository.save(action);
+        actionRepository.save(action);
         //TODO: why?
         actionRequestDto.getParameters().forEach(parameterDto -> {
             String name = parameterDto.getParameter_type_name();
@@ -79,9 +79,9 @@ public class ActionServiceImpl implements ActionService  {
             }
 
             Parameter parameter = parameterMapper.convertToParameter(parameterDto, parameterTypeService);
-            parameter.setAction(saved);
+            parameter.setAction(action);
             parameterService.saveParameter(parameter);
         });
-        return saved;
+        return action;
     }
 }
