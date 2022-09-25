@@ -16,11 +16,9 @@ public class ParameterType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long parameter_type_id;
-
     @JsonIgnore
     @OneToMany(mappedBy="parameter_type")
     private List<Parameter> parameters;
-
     @JsonIgnore
     @Column(unique = true)
     private String code;

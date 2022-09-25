@@ -9,13 +9,11 @@ import javax.persistence.*;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "application")
 public class Application {
 
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long application_id;
 

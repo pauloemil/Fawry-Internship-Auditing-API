@@ -11,8 +11,6 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class SelectorsDto {
 	private List<ParameterType> parameterTypes;
 	private List<ActionType> actionTypes;

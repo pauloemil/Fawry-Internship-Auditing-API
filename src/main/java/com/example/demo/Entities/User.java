@@ -15,11 +15,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long user_id;
-
     @JsonIgnore
     @OneToMany(mappedBy="user")
     private List<Action> actions;
-
     private String user_name;
     private String user_image;
     private String user_title;

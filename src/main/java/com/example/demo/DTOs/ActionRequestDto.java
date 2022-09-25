@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class ActionRequestDto {
     private long application_id;
     private long user_id;

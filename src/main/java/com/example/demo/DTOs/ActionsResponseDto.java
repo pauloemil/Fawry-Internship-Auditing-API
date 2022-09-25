@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class ActionsResponseDto {
 	private long total_count;
 	private long page_size;
